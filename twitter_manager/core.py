@@ -68,7 +68,7 @@ def build_response(message):
             'joy'     : '1EFubxF2rhCspgngcyhKBT',
             'anger'   : '5VbdutkbqzGajC7J3TmDjY',
             'sadness' : '67iIzArSbzsIMnb2l7a41y',
-            'surprise': 'playlist:52tVDYNwm1JcDGYfvju13g'
+            'surprise': '52tVDYNwm1JcDGYfvju13g'
         }[feeling]
 
         print (playlist)
@@ -81,10 +81,6 @@ def build_response(message):
             ).replace('b"',"").replace('"',"")
 
         print (answer)
-
-        # export SPOTIPY_CLIENT_ID='ad4144c5bc114150ab428f04b305004f'
-        # export SPOTIPY_CLIENT_SECRET='beff5d5a11804811ad1070f8971b31d0'
-        # export SPOTIPY_REDIRECT_URI='http://localhost/'
 
         spotify = spotipy.Spotify()
         client_credentials_manager = SpotifyClientCredentials()

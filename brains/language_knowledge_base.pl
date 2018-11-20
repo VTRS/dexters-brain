@@ -258,6 +258,7 @@ possibleways(relief, relieving).
 possibleways(amazement, amaze).
 possibleways(amazement, amazed).
 possibleways(amazement, amazements).
+possibleways(amazement, awesome).
 
 % Surprise
 possibleways(surprise, surprize).
@@ -529,6 +530,7 @@ possibleways(sadness, sad).
 possibleways(sadness, sadly).
 possibleways(sadness, sadder).
 possibleways(sadness, saddest).
+possibleways(sadness, down).
 
 % Unhappiness
 possibleways(unhappiness, unhappy).

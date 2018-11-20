@@ -77,7 +77,7 @@ responsive(sadness, "sending you good vibes to overcome that ").
 
 responsive(fear, "you're brave, no matter that ").
 responsive(fear, "you're never alone, ").
-responsive(fear, "what you are feeling helps you to get trough it even that ").
+responsive(fear, "what you are feeling helps you to get through it even that ").
 
 % Phrases to recommend music
 recommend(". you should listen to this ").
