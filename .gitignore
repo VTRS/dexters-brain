@@ -1,5 +1,6 @@
 secret*
 botvenv/*
+auth/*
 
 
 # Byte-compiled / optimized / DLL files
