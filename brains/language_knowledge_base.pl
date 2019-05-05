@@ -20,6 +20,7 @@
 % Love
 possibleways(love, loved).
 possibleways(love, lover).
+possibleways(love, lovers).
 possibleways(love, loving).
 possibleways(love, lovable).
 possibleways(love, lovably).
