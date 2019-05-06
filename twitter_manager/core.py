@@ -155,7 +155,7 @@ def get_emotions(tweet, model, tokenizer, maxlen):
             ).replace(" ", ",").replace(",,", ","
             ).replace("'",""
             ).replace("?","").replace("!","").lower()
-        plinpupt = "answer(["+ string +"], Feeling, Response)"
+        plinpupt = "answer(["+ string +"], Feeling)"
         response = pl.query(plinpupt)
         response_list = list(response)
         feeling = response_list[0]['Feeling']
@@ -203,6 +203,10 @@ def get_song(emotions, feeling):
 
     return 'none'
 
+def bouild_response(emotions, feeling, song):
+    possible_responses=open("secret.json").read()
+    return possible_responses
+
 def main():
     # Prepare Model for consulting
     model = load_model('../brains/try2.h5')
@@ -219,6 +223,8 @@ def main():
         print (feeling)
         song = get_song(emotions, feeling)
         print (song)
+        response = build_response(emotions, feeling, song)
+        print(response)
     # while(True):
     #     twts = api.search(q="@dexterthebot")
     #     for s in twts:

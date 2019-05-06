@@ -47,8 +47,7 @@ feeling_in_phrase([MHead|MTail], Feeling):-
   feeling_in_phrase(MTail, Feeling).
 
 answer(Message, Feeling, Response):-
-  feeling_in_phrase(Message, Feeling),
-  build_response(Message, Feeling, Response).
+  feeling_in_phrase(Message, Feeling).
 
 build_response(Message, Feeling, Response):-
   substitute_person(Message, SubstitutedMessage),
