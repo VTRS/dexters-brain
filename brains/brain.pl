@@ -46,7 +46,7 @@ feeling_in_phrase([MHead|MTail], Feeling):-
   get_root_feeling(MHead, Feeling);
   feeling_in_phrase(MTail, Feeling).
 
-answer(Message, Feeling, Response):-
+answer(Message, Feeling):-
   feeling_in_phrase(Message, Feeling).
 
 build_response(Message, Feeling, Response):-
