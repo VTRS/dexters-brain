@@ -179,7 +179,7 @@ def get_song(emotions, feeling):
         'trust' : '4NdkYnfrFDNsVz16AVXKtB',
     }
     if(feeling != 'none'):
-        if (float(emotions[0][1][:-1]) >= 56.0):
+        if (float(emotions[0][1][:-1]) >= 50.0):
             if(emotions[0][0] != feeling):
                 primary_emotion = emotions[0][0]
                 return track_from_playlists(playlist[primary_emotion],
@@ -208,9 +208,8 @@ def build_response(emotions, feeling, song):
     possible_responses = json.loads(possible_responses)
     if song != 'none':
         if (feeling != 'none'):
-            if (float(emotions[0][1][:-1]) >= 60.0):
+            if (float(emotions[0][1][:-1]) >= 50.0):
                 feeling = emotions[0][0]
-
         else:
             feeling = emotions[random.randint(0,1)][0]
 
@@ -218,10 +217,12 @@ def build_response(emotions, feeling, song):
             aux = "positive"
         else:
             aux = "negative"
+
         rand = random.randint(0, len(possible_responses[feeling])-1)
         answer = possible_responses[feeling][rand]
         rand = random.randint(0, len(possible_responses['recommend'][aux])-1)
         recommendation = possible_responses['recommend'][aux][rand]
+
         return answer + recommendation + song
     else:
         return ("sorry i failed you, im still learning. but here is a song that is good for anything https://open.spotify.com/track/2374M0fQpWi3dLnB54qaLX?si=Vus376VRR3--DsHp3BJitg")
@@ -233,25 +234,22 @@ def main():
     tokenizer = create_tokenizer(x_train.values)
     maxlen = max_len(x_train.values)
     currdate = datetime.datetime.now()
+    now = currdate
     while (True):
         twts = api.search(q="@dexterthebot")
         for s in twts:
             if(s.created_at > currdate):
                 if (not s.retweeted) and ('RT @' not in s.text):
                     tweet = s.text
-                    print (tweet)
                     emotions, feeling = get_emotions(tweet, model, tokenizer, maxlen)
                     emotions.sort(key = lambda a: float(a[1][:-1]), reverse=True)
-                    print (emotions)
-                    print (feeling)
                     song = get_song(emotions, feeling)
-                    print (song)
                     response = build_response(emotions, feeling, song)
-                    print(response)
                     username = s.user.screen_name
                     newtwt = "@" + username + " " + response
                     s = api.update_status(newtwt, s.id)
-                currdate = s.created_at
+                    now = s.created_at
+        currdate = now
         time.sleep(7)
 
 main()
