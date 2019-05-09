@@ -234,7 +234,6 @@ def main():
     tokenizer = create_tokenizer(x_train.values)
     maxlen = max_len(x_train.values)
     currdate = datetime.datetime.now()
-    now = currdate
     while (True):
         try:
             twts = api.search(q="@dexterthebot")
@@ -249,8 +248,7 @@ def main():
                         username = s.user.screen_name
                         newtwt = "@" + username + " " + response
                         s = api.update_status(newtwt, s.id)
-                        now = s.created_at
-                        currdate = now
+                        currdate = s.created_at
         except:
             api = tweepy.API(auth, wait_on_rate_limit=True)
         time.sleep(7)
