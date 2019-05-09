@@ -83,7 +83,7 @@ def track_from_playlists(playlist_a_id, playlist_b_id):
     tracks_a = get_tracks(playlist_a_id)
     tracks_b = get_tracks(playlist_b_id)
     tracks_c = intersection(tracks_a, tracks_b)
-    if(len(tracks_c) > 0):
+    if(len(tracks_c) > 5):
         return random_element(tracks_c)
     else:
         return random_element(tracks_a)
