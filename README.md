@@ -15,7 +15,7 @@ Dexter is open source which means that you can build your own version, also if y
 ### Prerequisites
 
 You will need to create a couple developer accounts for the bot to work.
-1. [Twitter develoer account](https://developer.twitter.com/en/apply-for-access)
+1. [Twitter developer account](https://developer.twitter.com/en/apply-for-access)
 2. [Spotify for developers](https://developer.spotify.com/)
 
 You should also have installed
