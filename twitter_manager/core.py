@@ -234,7 +234,6 @@ def main():
     tokenizer = create_tokenizer(x_train.values)
     maxlen = max_len(x_train.values)
     currdate = datetime.datetime.now()
-    now = currdate
     while (True):
         twts = api.search(q="@dexterthebot")
         for s in twts:
@@ -248,8 +247,7 @@ def main():
                     username = s.user.screen_name
                     newtwt = "@" + username + " " + response
                     s = api.update_status(newtwt, s.id)
-                    now = s.created_at
-        currdate = now
+                    currdate = s.created_at
         time.sleep(7)
 
 main()
