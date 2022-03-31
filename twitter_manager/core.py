@@ -149,7 +149,7 @@ def get_emotions(tweet, model, tokenizer, maxlen):
     ]
     try:
         pl = Prolog()
-        pl.consult("../brains/brain.pl")
+        pl.consult("brains/brain.pl")
         string = plane_tweet.replace("@dexterthebot ", ""
             ).replace(",", " ").replace(".", ""
             ).replace(" ", ",").replace(",,", ","
@@ -229,28 +229,39 @@ def build_response(emotions, feeling, song):
 
 def main():
     # Prepare Model for consulting
-    model = load_model('../brains/brain.h5')
-    x_train, y_train = load_data('../brains/data/2018-E-c-En-train.txt')
+    model = load_model('brains/brain.h5')
+    x_train, y_train = load_data('brains/data/2018-E-c-En-train.txt')
     tokenizer = create_tokenizer(x_train.values)
     maxlen = max_len(x_train.values)
     currdate = datetime.datetime.now()
-    while (True):
-        try:
-            twts = api.search(q="@dexterthebot")
-            for s in twts:
-                if(s.created_at > currdate):
-                    if (not s.retweeted) and ('RT @' not in s.text):
-                        tweet = s.text
-                        emotions, feeling = get_emotions(tweet, model, tokenizer, maxlen)
-                        emotions.sort(key = lambda a: float(a[1][:-1]), reverse=True)
-                        song = get_song(emotions, feeling)
-                        response = build_response(emotions, feeling, song)
-                        username = s.user.screen_name
-                        newtwt = "@" + username + " " + response
-                        s = api.update_status(newtwt, s.id)
-                        currdate = s.created_at
-        except:
-            api = tweepy.API(auth, wait_on_rate_limit=True)
-        time.sleep(7)
+
+    try:
+        if api.update_status("hello world"):
+            print("Posted")
+    except tweepy.error.TweepError as e:
+         print(e)
+
+    # while (True):
+    #     try:
+    #         twts = api.search(q="@dexterthebot")
+    #         for s in twts:
+    #             if(s.created_at > currdate):
+    #                 if (not s.retweeted) and ('RT @' not in s.text):
+    #                     print("Tweet:")
+    #                     print(s.text)
+    #                     tweet = s.text
+    #                     emotions, feeling = get_emotions(tweet, model, tokenizer, maxlen)
+    #                     emotions.sort(key = lambda a: float(a[1][:-1]), reverse=True)
+    #                     song = get_song(emotions, feeling)
+    #                     response = build_response(emotions, feeling, song)
+    #                     username = s.user.screen_name
+    #                     newtwt = "@" + username + " " + response
+    #                     print("Response:")
+    #                     print(newtwt)
+    #                     s = api.update_status(newtwt, s.id)
+    #                     currdate = s.created_at
+    #     except:
+    #         api = tweepy.API(auth, wait_on_rate_limit=True)
+    #     time.sleep(7)
 
 main()
