@@ -25,7 +25,7 @@ oauthlib==3.0.1
 packaging==19.0
 pandas==0.24.2
 pip-upgrader==1.4.12
-protobuf==3.15.0
+protobuf==3.18.3
 pyparsing==2.4.0
 PySocks==1.6.8
 pyswip==0.2.8
