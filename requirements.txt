@@ -6,7 +6,7 @@ Click==7.0
 colorclass==2.2.0
 docopt==0.6.2
 emoji==0.5.2
-Flask==1.0.2
+Flask==2.2.5
 gast==0.2.2
 grpcio==1.20.1
 h5py==2.9.0
